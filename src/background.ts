@@ -10,7 +10,6 @@ chrome.webRequest.onBeforeRequest.addListener(
           if (tab === undefined || tab.id === undefined) {
             return;
           }
-          console.log(tab.id);
           chrome.tabs.executeScript(tab.id, {
             code: "window.location.href = 'https://facebook.com/?sk=h_chr'",
           });
