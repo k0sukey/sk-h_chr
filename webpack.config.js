@@ -9,7 +9,15 @@ module.exports = {
     path: path.join(__dirname, 'extension'),
     filename: 'background.js',
   },
-  module: {},
+  module: {
+    rules: [
+      {
+        test: /\.ts?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
+    ],
+  },
   resolve: {
     extensions: ['.ts', '.js'],
     modules: ['src', 'node_modules'],

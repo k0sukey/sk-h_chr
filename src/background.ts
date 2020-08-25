@@ -7,18 +7,24 @@ chrome.webRequest.onBeforeRequest.addListener(
       chrome.windows.getCurrent((window_) => {
         chrome.tabs.query({ active: true, windowId: window_.id }, (tabs) => {
           const [tab] = tabs;
-          if (tab === undefined || tab.id === undefined) {
-            return;
-          }
-          chrome.tabs.executeScript(tab.id, {
-            code: "window.location.href = 'https://facebook.com/?sk=h_chr'",
-          });
+          chrome.tabs.executeScript(
+            {
+              code: `window.history.replaceState(null, '${
+                tab.title ?? 'Facebook'
+              }', '/?sk=h_chr');`,
+            },
+            () => {
+              chrome.tabs.executeScript({ code: 'location.reload();' });
+            },
+          );
         });
       });
+      return { cancel: true };
     }
   },
   {
     urls: ['https://*.facebook.com/ajax/navigation/*'],
     types: ['xmlhttprequest'],
   },
+  ['blocking'],
 );
