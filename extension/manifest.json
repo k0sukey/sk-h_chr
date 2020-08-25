@@ -1,0 +1,12 @@
+{
+  "name": "sk=h_chr",
+  "version": "1.0.0",
+  "description": "sk=h_chr",
+  "homepage_url": "https://github.com/k0sukey/sk=h_chr",
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": true
+  },
+  "permissions": ["webRequest", "tabs", "https://*.facebook.com/*"],
+  "manifest_version": 2
+}
